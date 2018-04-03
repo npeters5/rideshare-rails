@@ -1,2 +1,24 @@
-<h1>Drivers#show</h1>
-<p>Find me in app/views/drivers/show.html.erb</p>
+<h2>Name: <%= @driver.name %></h2>
+
+<ul>
+  <li>Total Earnings: $<%= @driver.total_earnings %></li>
+  <li>Average Rating: <%= @driver.average_rating %></li>
+  <li>VIN: <%= @driver.vin %></li>
+</ul>
+
+<ul>
+  <li>
+    <%= link_to "Edit Driver", edit_driver_path %>
+  </li>
+  <li>
+    <%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </li>
+</ul>
+
+<% @driver.trips.each do |trip| %>
+ <ul>
+   <li><%# link_to trip.id, trip_path(trip) %></li>
+   <li><%# link_to “Edit”, edit_trip_path(trip) %></li>
+   <li><%# link_to “Delete”, trip_path(trip), :data => {:confirm => ‘Are you sure?’}, method: :delete %></li>
+ </ul>
+<% end %>
