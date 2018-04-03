@@ -13,19 +13,21 @@ Rails.application.routes.draw do
 
   get 'trips/destroy'
 
-  get 'passengers/index'
+  resources :passengers
 
-  get 'passengers/show'
-
-  get 'passengers/new'
-
-  get 'passengers/create'
-
-  get 'passengers/edit'
-
-  get 'passengers/update'
-
-  get 'passengers/destroy'
+  # get 'passengers/index'
+  #
+  # get 'passengers/show'
+  #
+  # get 'passengers/new'
+  #
+  # get 'passengers/create'
+  #
+  # get 'passengers/edit'
+  #
+  # get 'passengers/update'
+  #
+  # get 'passengers/destroy'
 
   get 'drivers/index'
 
