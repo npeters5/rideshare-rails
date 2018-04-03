@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  rating: 1.5
+  cost: 1.5
+  driver: one
+  passenger: one
+
+two:
+  date: MyString
+  rating: 1.5
+  cost: 1.5
+  driver: two
+  passenger: two
