@@ -7,7 +7,15 @@ class Passenger < ApplicationRecord
   end
 
   def request_trip
-    #TODO: replace placeholder with real logic here
-    return self.trips.first
+    trip = Trip.new
+    trip.date = DateTime.now
+    trip.cost = rand(9999)
+    trip.driver_id = Driver.all.sample.id
+    trip.passenger_id = self.id
+    if trip.save
+      return trip
+    else
+      raise ArgumentError.new("Error: Trip not created.")
+    end
   end
 end
