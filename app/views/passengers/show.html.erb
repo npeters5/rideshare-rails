@@ -1,2 +1,22 @@
-<h1>Passengers#show</h1>
-<p>Find me in app/views/passengers/show.html.erb</p>
+<h1>Passenger Details</h1>
+
+<ul>
+  <li>Name: <%= @passenger.name %></li>
+  <li>Phone Number: <%= @passenger.phone_num %></li>
+  <li>Total Cost: $<%= @passenger.total_cost %></li>
+</ul>
+
+<ul>
+  <li><%= link_to "Edit Passenger", edit_passenger_path(@passenger) %></li>
+  <li><%= link_to "Delete Passenger", passenger_path(@passenger), :data => {:confirm => 'Are you sure?'}, method: :delete %></li>
+</ul>
+
+<% @passenger.trips.each do |trip| %>
+  <ul>
+    <li><%# link_to trip.id, trip_path(trip) %></li>
+    <li><%# link_to "Edit", edit_trip_path(trip) %></li>
+    <li><%# link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></li>
+  </ul>
+<% end %>
+
+<%# link_to "Request A New Trip", new_trip_path %>
