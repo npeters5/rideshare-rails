@@ -18,4 +18,9 @@ class Passenger < ApplicationRecord
       raise ArgumentError.new("Error: Trip not created.")
     end
   end
+
+  def rate_trip(trip_id)
+    #TODO: implement
+  end
+
 end
