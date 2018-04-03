@@ -13,10 +13,11 @@
 
 <% @passenger.trips.each do |trip| %>
   <ul>
-    <li><%# link_to trip.id, trip_path(trip) %></li>
-    <li><%# link_to "Edit", edit_trip_path(trip) %></li>
-    <li><%# link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></li>
+    <li><%= link_to trip.id, trip_path(trip) %></li>
+    <li><%= link_to "Edit", edit_trip_path(trip) %></li>
+    <li><%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></li>
   </ul>
 <% end %>
 
-<%# link_to "Request A New Trip", new_trip_path %>
+<% trip = @passenger.request_trip %>
+<%= link_to "Request A New Trip", trip_path(trip) %>

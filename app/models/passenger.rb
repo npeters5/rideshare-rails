@@ -7,6 +7,7 @@ class Passenger < ApplicationRecord
   end
 
   def request_trip
-
+    #TODO: replace placeholder with real logic here
+    return self.trips.first
   end
 end
