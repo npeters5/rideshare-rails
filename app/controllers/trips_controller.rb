@@ -39,7 +39,13 @@ class TripsController < ApplicationController
         render :edit
       end
     end
+  end
 
+  def update_rating
+    raise
+    @trip = Trip.find_by(id: params[:id])
+    @trip.rating = params[:rating]
+    @trip.save
   end
 
   def destroy

@@ -11,12 +11,33 @@
   <li><%= link_to "Delete Passenger", passenger_path(@passenger), :data => {:confirm => 'Are you sure?'}, method: :delete %></li>
 </ul>
 
-<% @passenger.trips.each do |trip| %>
-  <ul>
-    <li><%= link_to trip.id, trip_path(trip) %></li>
-    <li><%= link_to "Edit", edit_trip_path(trip) %></li>
-    <li><%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></li>
-  </ul>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th width="10">ID</th>
+      <th>Date</th>
+      <th>Driver</th>
+      <th>Passenger</th>
+      <th>Cost</th>
+      <th>Rating</th>
+      <th>Edit / Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @passenger.trips.each do |trip| %>
+      <tr>
+        <td><%= link_to trip.id, trip_path(trip) %></td>
+        <td><%= trip.pretty_date %></td>
+        <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+        <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+        <td><%= trip.cost_in_dollar %></td>
+        <td><%= trip.rating %></td>
+        <td><%= link_to "Edit", edit_trip_path(trip.id) %> <%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+<br>
+
 
 <%= link_to "Request A New Trip", passenger_trips_path(@passenger), method: :post %>
