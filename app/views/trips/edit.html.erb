@@ -1,2 +1,26 @@
-<h1>Trips#edit</h1>
-<p>Find me in app/views/trips/edit.html.erb</p>
+<h1>Editing Trip #<%= @trip.id %></h1>
+
+<%= form_for @trip do |f| %>
+  <%= f.label :date %>: <%= f.label @trip.pretty_date %>
+  <%= f.date_field :date, "data-provide" => 'datepicker' %>
+  <br>
+
+  <%= f.label :driver %>
+  <%= f.select :driver_id, Driver.all.map { |driver| [driver.name, driver.id] } %>
+  <br>
+
+  <%= f.label :passenger %>:
+  <%= f.select :passenger_id, [@trip.passenger.name] %>
+  <br>
+
+  <%= f.label :rating %>
+  <%= f.select :rating, (1..5).to_a %>
+  <br>
+
+  <%= f.label :cost %>
+  <%= f.text_field :cost_in_dollar %>
+  <br>
+
+  <%= f.submit "Update" %>
+
+<% end %>
