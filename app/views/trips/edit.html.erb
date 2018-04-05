@@ -10,7 +10,7 @@
   <br>
 
   <%= f.label :passenger %>:
-  <%= f.select :passenger_id, [@trip.passenger.name] %>
+  <%= f.select :passenger_id, [[@trip.passenger.name, @trip.passenger.id]] %>
   <br>
 
   <%= f.label :rating %>
