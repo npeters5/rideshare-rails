@@ -5,4 +5,8 @@ class Trip < ApplicationRecord
   def cost_in_dollar
     self.cost / 100
   end
+
+  def pretty_date
+    Date.parse(self.date)
+  end
 end
