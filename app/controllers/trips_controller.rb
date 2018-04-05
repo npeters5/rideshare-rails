@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   def index
+
   end
 
   def show
@@ -32,6 +33,12 @@ class TripsController < ApplicationController
   end
 
   def destroy
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip
+      @trip.destroy
+    end
+    flash[:notice] = "You successfully deleted this trip."
   end
 
   private
