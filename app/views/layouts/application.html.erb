@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <div class="buttons">
+      <span><%= link_to "Home", root_path %></span>
+      <span><%= link_to "All Drivers", drivers_path %></span>
+      <span><%= link_to "Add Driver", new_driver_path %></span>
+      <span><%= link_to "All Passengers", passengers_path %></span>
+      <span><%= link_to "Add Passenger", new_passenger_path %></span>
+    </div>
     <%= yield %>
   </body>
 </html>
