@@ -4,6 +4,7 @@
   <li>Total Earnings: $<%= @driver.total_earnings %></li>
   <li>Average Rating: <%= @driver.average_rating %></li>
   <li>VIN: <%= @driver.vin %></li>
+  <li>Status: <%= @driver.is_available? ? "Available" : "Unavailable" %> </li>
 </ul>
 
 <ul>

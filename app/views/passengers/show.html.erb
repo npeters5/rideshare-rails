@@ -19,5 +19,4 @@
   </ul>
 <% end %>
 
-<% trip = @passenger.request_trip %>
-<%= link_to "Request A New Trip", trip_path(trip) %>
+<%= link_to "Request A New Trip", passenger_trips_path(@passenger), method: :post %>

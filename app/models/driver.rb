@@ -6,7 +6,13 @@ class Driver < ApplicationRecord
   end
 
   def average_rating
-    return (self.trips.inject(0) { |sum, trip| sum + trip.rating } / trips.count).round(2)
+    sum = 0
+    self.trips.each do |trip|
+      if trip.rating
+        sum += trip.rating
+      end
+    end
+    sum.round(2)
   end
 
   def earnings_per_trip(amount)
