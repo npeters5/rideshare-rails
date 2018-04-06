@@ -1,6 +1,7 @@
 class DriversController < ApplicationController
   def index
-    @drivers = Driver.all.order("created_at DESC")
+    @drivers = Driver.all.to_a
+    @drivers.sort_by! { |driver| -1 * driver.average_rating.to_f }
   end
 
   def show
