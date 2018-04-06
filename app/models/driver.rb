@@ -7,12 +7,14 @@ class Driver < ApplicationRecord
 
   def average_rating
     sum = 0
+    num_trips = 0
     self.trips.each do |trip|
       if trip.rating
         sum += trip.rating
+        num_trips += 1
       end
     end
-    sum.round(2)
+    (sum / num_trips).round(2)
   end
 
   def earnings_per_trip(amount)
