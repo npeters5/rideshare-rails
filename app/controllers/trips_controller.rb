@@ -1,13 +1,7 @@
 class TripsController < ApplicationController
-  def index
-
-  end
 
   def show
     @trip = Trip.find_by(id: params[:id])
-  end
-
-  def new
   end
 
   def create
@@ -30,7 +24,6 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.find_by(id: params[:id])
 
-    #TODO: fix bug
     if @trip
       if @trip.update(trip_params)
         if params[:trip][:cost_in_dollar]
@@ -45,13 +38,6 @@ class TripsController < ApplicationController
     end
   end
 
-  # def update_rating
-  #   raise
-  #   @trip = Trip.find_by(id: params[:id])
-  #   @trip.rating = params[:rating]
-  #   @trip.save
-  # end
-
   def destroy
     @trip = Trip.find_by(id: params[:id])
 
@@ -64,6 +50,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    return params.require(:trip).permit(:date, :driver_id, :passenger_id, :rating, :cost)
+    return params.require(:trip).permit(:date, :rating, :cost, :driver_id, :passenger_id)
   end
 end
