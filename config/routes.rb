@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :drivers
 
-  put '/trips/:id', to: 'trips#update_rating'
+  # put '/trips/:id', to: 'trips#update_rating'
 
   resources :trips, only: [:show, :edit, :update, :destroy]
 

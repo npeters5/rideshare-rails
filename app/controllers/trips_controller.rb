@@ -33,7 +33,9 @@ class TripsController < ApplicationController
     #TODO: fix bug
     if @trip
       if @trip.update(trip_params)
-        @trip.cost = params[:trip][:cost_in_dollar].to_i * 100
+        if params[:trip][:cost_in_dollar]
+          @trip.cost = params[:trip][:cost_in_dollar].to_i * 100
+        end
         if @trip.save
           redirect_to trip_path
         else
@@ -43,12 +45,12 @@ class TripsController < ApplicationController
     end
   end
 
-  def update_rating
-    raise
-    @trip = Trip.find_by(id: params[:id])
-    @trip.rating = params[:rating]
-    @trip.save
-  end
+  # def update_rating
+  #   raise
+  #   @trip = Trip.find_by(id: params[:id])
+  #   @trip.rating = params[:rating]
+  #   @trip.save
+  # end
 
   def destroy
     @trip = Trip.find_by(id: params[:id])
