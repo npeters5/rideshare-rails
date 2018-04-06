@@ -36,6 +36,7 @@
           <% if trip.rating %>
             <%= trip.rating %>
           <% else %>
+            <% @rate_first = true %>
             <%= form_for trip do |f| %>
               <%= f.label :rating %>
               <%= f.select :rating, (1..5).to_a, :include_blank => true %>
@@ -50,5 +51,6 @@
 </table>
 <br>
 
-
-<%= link_to "Request A New Trip", passenger_trips_path(@passenger), method: :post %>
+<% if !@rate_first %>
+  <%= link_to "Request A New Trip", passenger_trips_path(@passenger), method: :post %>
+<% end %>
