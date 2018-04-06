@@ -53,18 +53,12 @@ span {
 }
 
 td, th {
-  padding-right: 20px;
+  padding-right: 40px;
+  padding-bottom: 5px;
 }
 
-.flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  list-style: none;
-}
-
-.flex li {
-  flex: 1;
+td:nth-child(2) {
+  text-align: center;
 }
 
 thead {
