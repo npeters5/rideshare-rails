@@ -9,6 +9,7 @@ class TripsController < ApplicationController
     @trip.date = DateTime.now
     @trip.cost = rand(9999)
     @trip.driver_id = Driver.all.where(is_available: true).sample.id
+    Driver.find_by(id: @trip.driver_id).update(is_available: false)
     @trip.passenger_id = Passenger.find_by(id: params[:passenger_id]).id
     if @trip.save
       redirect_to trip_path(@trip)
@@ -28,6 +29,9 @@ class TripsController < ApplicationController
       if @trip.update(trip_params)
         if params[:trip][:cost_in_dollar]
           @trip.cost = params[:trip][:cost_in_dollar].to_i * 100
+        end
+        if params[:trip][:rating]
+          Driver.find_by(id: @trip.driver_id).update(is_available: true)
         end
         if @trip.save
           redirect_to trip_path
