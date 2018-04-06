@@ -1,9 +1,9 @@
-<h1>Passenger Details</h1>
+<h2>Passenger Details</h2>
 
 <ul>
   <li>Name: <%= @passenger.name %></li>
   <li>Phone Number: <%= @passenger.phone_num %></li>
-  <li>Total Cost: $<%= @passenger.total_cost %></li>
+  <li>Total Spent: $<%= @passenger.total_cost %></li>
 </ul>
 
 <ul>
@@ -11,10 +11,12 @@
   <li><%= link_to "Delete Passenger", passenger_path(@passenger), :data => {:confirm => 'Are you sure?'}, method: :delete %></li>
 </ul>
 
+<h4>Trip History</h4>
+
 <table>
   <thead>
     <tr>
-      <th width="10">ID</th>
+      <th>Trip ID</th>
       <th>Date</th>
       <th>Driver</th>
       <th>Passenger</th>
@@ -30,7 +32,7 @@
         <td><%= trip.pretty_date %></td>
         <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
         <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
-        <td><%= trip.cost_in_dollar %></td>
+        <td>$<%= trip.cost_in_dollar %></td>
         <td>
           <% if trip.rating %>
             <%= trip.rating %>
