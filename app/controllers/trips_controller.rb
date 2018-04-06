@@ -33,10 +33,12 @@ class TripsController < ApplicationController
     #TODO: fix bug
     if @trip
       if @trip.update(trip_params)
-        @trip.cost = params[:cost].to_i * 100
-        redirect_to trip_path
-      else
-        render :edit
+        @trip.cost = params[:trip][:cost_in_dollar].to_i * 100
+        if @trip.save
+          redirect_to trip_path
+        else
+          render :edit
+        end
       end
     end
   end
