@@ -41,6 +41,9 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: params[:id])
 
     if @passenger
+      @passenger.trips.each do |trip|
+        trip.destroy
+      end
       @passenger.destroy
     end
     redirect_to passengers_path

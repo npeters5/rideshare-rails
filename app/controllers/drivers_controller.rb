@@ -43,6 +43,9 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver
+      @driver.trips.each do |trip|
+        trip.destroy
+      end
       @driver.destroy
     end
     redirect_to drivers_path
