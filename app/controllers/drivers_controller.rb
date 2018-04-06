@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
   def index
-    @drivers = Driver.all
+    @drivers = Driver.all.order("created_at DESC")
   end
 
   def show
@@ -13,6 +13,13 @@ class DriversController < ApplicationController
   end
 
   def create
+    @driver = Driver.new(driver_params)
+    @driver.is_available = true
+    if @driver.save
+      redirect_to drivers_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -38,7 +45,7 @@ class DriversController < ApplicationController
   private
 
   def driver_params
-    params.require(:driver).permit(:name, :vin)
+    params.require(:driver).permit(:name, :vin, :is_available)
   end
 
 end

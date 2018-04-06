@@ -1,5 +1,6 @@
 class Driver < ApplicationRecord
   has_many :trips
+  validates_presence_of :name, :vin
 
   def total_earnings
     return (self.trips.inject(0) { |sum, trip| sum + earnings_per_trip(trip.cost) } / 100).round(2)
