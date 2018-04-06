@@ -1,57 +1,58 @@
-<h2>Driver Details: <%= @driver.name %></h2>
+<div class="">
+  <div class="show-container">
+    <div class="">
+      <h2>Driver Details: <%= @driver.name %></h2>
 
-<ul>
-  <li>Total Earnings: $<%= @driver.total_earnings %></li>
-  <li>Average Rating: <%= @driver.average_rating %></li>
-  <li>VIN: <%= @driver.vin %></li>
-  <li>Status: <%= @driver.is_available? ? "Available" : "Unavailable" %> </li>
-</ul>
+      <ul>
+        <li>Total Earnings: $<%= @driver.total_earnings %></li>
+        <li>Average Rating: <%= @driver.average_rating %></li>
+        <li>VIN: <%= @driver.vin %></li>
+        <li>Status: <%= @driver.is_available? ? "Available" : "Unavailable" %> </li>
+      </ul>
+    </div>
+    <div class="">
+      <span><%= link_to "Edit Driver", edit_driver_path %></span>
+      <span><%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: { confirm: 'Are you sure?' } %></span>
+    </div>
+  </div>
 
-<ul>
-  <li>
-    <%= link_to "Edit Driver", edit_driver_path %>
-  </li>
-  <li>
-    <%= link_to "Delete Driver", driver_path(@driver.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-  </li>
-</ul>
+  <h4>Trip History</h4>
 
-<h4>Trip History</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th width="10">Trip ID</th>
-      <th>Date</th>
-      <th>Driver</th>
-      <th>Passenger</th>
-      <th>Cost</th>
-      <th>Rating</th>
-      <th>Edit / Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-      <% @driver.trips.each do |trip| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to trip.id, trip_path(trip) %></td>
-        <td><%= trip.pretty_date %></td>
-        <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
-        <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
-        <td>$<%= trip.cost_in_dollar %></td>
-        <td>
-          <% if trip.rating %>
-            <%= trip.rating %>
-          <% else %>
-            <%= form_for trip do |f| %>
-              <%= f.label :rating %>
-              <%= f.select :rating, (1..5).to_a, :include_blank => true %>
-              <%= f.submit "Update" %>
-            <% end %>
-          <% end %>
-        </td>
-        <td><%= link_to "Edit", edit_trip_path(trip.id) %> <%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></td>
+        <th width="10">Trip ID</th>
+        <th>Date</th>
+        <th>Driver</th>
+        <th>Passenger</th>
+        <th>Cost</th>
+        <th>Rating</th>
+        <th>Edit / Delete</th>
       </tr>
-      <% end %>
-  </tbody>
-</table>
-<br>
+    </thead>
+    <tbody>
+        <% @driver.trips.each do |trip| %>
+        <tr>
+          <td><%= link_to trip.id, trip_path(trip) %></td>
+          <td><%= trip.pretty_date %></td>
+          <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+          <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+          <td>$<%= trip.cost_in_dollar %></td>
+          <td>
+            <% if trip.rating %>
+              <%= trip.rating %>
+            <% else %>
+              <%= form_for trip do |f| %>
+                <%= f.label :rating %>
+                <%= f.select :rating, (1..5).to_a, :include_blank => true %>
+                <%= f.submit "Update" %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= link_to "Edit", edit_trip_path(trip.id) %> <%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>

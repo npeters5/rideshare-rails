@@ -28,7 +28,7 @@ h1, h2 {
   display: flex;
   margin-top: 80px;
   flex-direction: row;
-  height: 50px;
+  height: 30px;
 }
 
  .nav-container {
@@ -63,4 +63,15 @@ td:nth-child(2) {
 
 thead {
   text-align: left;
+}
+
+.show-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.show-container ul {
+
 }

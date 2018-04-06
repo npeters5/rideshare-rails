@@ -13,12 +13,8 @@
   <%= f.select :passenger_id, [[@trip.passenger.name, @trip.passenger.id]] %>
   <br>
 
-  <% if @trip.rating %>
-    <%= @trip.rating %>
-  <% else %>
-    <%= f.label :rating %>
-    <%= f.select :rating, (1..5).to_a, :include_blank => true %>
-  <% end %>
+  <%= f.label :rating %>
+  <%= f.select :rating, (1..5).to_a, :value => @trip.rating %>
   <br>
 
   <%= f.label :cost %>
