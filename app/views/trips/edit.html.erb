@@ -1,8 +1,8 @@
 <h1>Editing Trip #<%= @trip.id %></h1>
 
 <%= form_for @trip do |f| %>
-  <%= f.label :date %>: <%= f.label @trip.pretty_date %>
-  <%= f.date_field :date, "data-provide" => 'datepicker' %>
+  <%= f.label :date %>
+  <%= f.date_field :date, :value => @trip.pretty_date, "data-provide" => 'datepicker' %>
   <br>
 
   <%= f.label :driver %>
