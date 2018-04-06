@@ -3,10 +3,6 @@
     <div class="">
       <h2>Passenger Details: <%= @passenger.name %></h2>
 
-      <button type="button" name="button"><% if !@rate_first %>
-        <%= link_to "Request A New Trip", passenger_trips_path(@passenger), method: :post %>
-      <% end %></button>
-
       <ul>
         <li>Phone Number: <%= @passenger.phone_num %></li>
         <li>Total Spent: $<%= @passenger.total_cost %></li>
@@ -19,45 +15,48 @@
     </div>
   </div>
 
-    <h4>Trip History</h4>
+  <h4>Trip History</h4>
 
-    <table>
-      <thead>
+  <table>
+    <thead>
+      <tr>
+        <th>Trip ID</th>
+        <th>Date</th>
+        <th>Driver</th>
+        <th>Passenger</th>
+        <th>Cost</th>
+        <th>Rating</th>
+        <th>Edit / Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @passenger.trips.each do |trip| %>
         <tr>
-          <th>Trip ID</th>
-          <th>Date</th>
-          <th>Driver</th>
-          <th>Passenger</th>
-          <th>Cost</th>
-          <th>Rating</th>
-          <th>Edit / Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-          <% @passenger.trips.each do |trip| %>
-          <tr>
-            <td><%= link_to trip.id, trip_path(trip) %></td>
-            <td><%= trip.pretty_date %></td>
-            <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
-            <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
-            <td>$<%= trip.cost_in_dollar %></td>
-            <td>
-              <% if trip.rating %>
-                <%= trip.rating %>
-              <% else %>
-                <% @rate_first = true %>
-                <%= form_for trip do |f| %>
-                  <%= f.label :rating %>
-                  <%= f.select :rating, (1..5).to_a, :include_blank => true %>
-                  <%= f.submit "Update" %>
-                <% end %>
+          <td><%= link_to trip.id, trip_path(trip) %></td>
+          <td><%= trip.pretty_date %></td>
+          <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+          <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+          <td>$<%= trip.cost_in_dollar %></td>
+          <td>
+            <% if trip.rating %>
+              <%= trip.rating %>
+            <% else %>
+              <% @rate_first = true %>
+              <%= form_for trip do |f| %>
+                <%= f.label :rating %>
+                <%= f.select :rating, (1..5).to_a, :include_blank => true %>
+                <%= f.submit "Update" %>
               <% end %>
-            </td>
-            <td><%= link_to "Edit", edit_trip_path(trip.id) %> <%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></td>
-          </tr>
-          <% end %>
-      </tbody>
-    </table>
-    <br>
-
+            <% end %>
+          </td>
+          <td><%= link_to "Edit", edit_trip_path(trip.id) %> <%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <br>
 </div>
+
+<% if !@rate_first %>
+  <%= link_to "Request A New Trip", passenger_trips_path(@passenger), method: :post, class: 'request-trip'%>
+<% end %>

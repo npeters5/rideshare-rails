@@ -72,6 +72,9 @@ thead {
   justify-content: space-around;
 }
 
-.show-container ul {
-
+.request-trip {
+  border: 1px solid black;
+  padding: 10px;
+  text-decoration: none;
+  background-color: lightgreen;
 }
