@@ -28,13 +28,17 @@ class TripsController < ApplicationController
     if @trip
       if @trip.update(trip_params)
 
+        if params[:trip][:cost_in_dollar]
+          @trip.cost = params[:trip][:cost_in_dollar].to_i * 100
+        end
+
         if params[:trip][:rating]
           Driver.find_by(id: @trip.driver_id).update(is_available: true)
           if @trip.save
             redirect_to passenger_path(@trip.passenger_id)
           end
         end
-        
+
       end
     end
   end
