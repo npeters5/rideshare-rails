@@ -55,9 +55,8 @@ class TripsController < ApplicationController
 
     if @trip
       @trip.destroy
+      flash[:notice] = "You successfully deleted this trip."
     end
-    #TODO: fix this
-    flash[:notice] = "You successfully deleted this trip."
   end
 
   private
