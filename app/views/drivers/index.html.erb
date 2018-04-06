@@ -1,9 +1,10 @@
-<h2>All Drivers</h2>
+<h1>All Drivers</h1>
 
 <% @drivers.each do |driver| %>
   <ul>
-    <li>
-        <%= link_to driver.name, driver_path(driver.id)%>
-    </li>
+    <li><%= link_to driver.name, driver_path(driver)%></li>
+    <li>Average Rating: <%= driver.average_rating %></li>
+    <li><%= link_to "Edit", edit_driver_path(driver) %></li>
+    <li><%= link_to "Delete", driver_path(driver), :data => {:confirm => 'Are you sure?'}, method: :delete %></li>
   </ul>
 <% end %>
