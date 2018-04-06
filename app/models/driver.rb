@@ -15,7 +15,11 @@ class Driver < ApplicationRecord
         num_trips += 1
       end
     end
-    (sum / num_trips).round(2)
+    if num_trips > 0
+      (sum / num_trips).round(2)
+    else
+      0
+    end
   end
 
   def earnings_per_trip(amount)

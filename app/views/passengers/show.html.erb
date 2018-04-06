@@ -42,7 +42,6 @@
             <% end %>
           <% end %>
         </td>
-        <!-- <td><%= trip.rating %></td> -->
         <td><%= link_to "Edit", edit_trip_path(trip.id) %> <%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></td>
       </tr>
       <% end %>
