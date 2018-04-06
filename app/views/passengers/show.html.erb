@@ -31,7 +31,18 @@
         <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
         <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
         <td><%= trip.cost_in_dollar %></td>
-        <td><%= trip.rating %></td>
+        <td>
+          <% if trip.rating %>
+            <%= trip.rating %>
+          <% else %>
+            <%= form_for trip do |f| %>
+              <%= f.label :rating %>
+              <%= f.select :rating, (1..5).to_a, :include_blank => true %>
+              <%= f.submit "Update" %>
+            <% end %>
+          <% end %>
+        </td>
+        <!-- <td><%= trip.rating %></td> -->
         <td><%= link_to "Edit", edit_trip_path(trip.id) %> <%= link_to "Delete", trip_path(trip), :data => {:confirm => 'Are you sure?'}, method: :delete %></td>
       </tr>
       <% end %>
