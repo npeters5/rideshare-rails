@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   belongs_to :passenger
 
   def cost_in_dollar
-    self.cost / 100
+    sprintf('%.2f', (self.cost / 100))
   end
 
   def pretty_date

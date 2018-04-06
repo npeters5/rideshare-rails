@@ -16,7 +16,7 @@ class Driver < ApplicationRecord
       end
     end
     if num_trips > 0
-      (sum / num_trips).round(2)
+      sprintf('%.1f', (sum / num_trips))
     else
       0
     end
