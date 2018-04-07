@@ -58,5 +58,9 @@
 </div>
 
 <% if !@rate_first %>
-  <%= link_to "Request A New Trip", passenger_trips_path(@passenger), method: :post, class: 'request-trip'%>
+  <p><%= link_to "Request A New Trip", passenger_trips_path(@passenger), method: :post, class: 'request-trip'%></p>
+<% end %>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
 <% end %>

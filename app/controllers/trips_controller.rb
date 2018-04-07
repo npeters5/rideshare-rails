@@ -8,13 +8,19 @@ class TripsController < ApplicationController
     @trip = Trip.new
     @trip.date = DateTime.now
     @trip.cost = rand(9999)
-    @trip.driver_id = Driver.all.where(is_available: true).sample.id
-    Driver.find_by(id: @trip.driver_id).update(is_available: false)
+    driver = Driver.all.where(is_available: true).sample
     @trip.passenger_id = Passenger.find_by(id: params[:passenger_id]).id
-    if @trip.save
-      redirect_to trip_path(@trip)
+    if driver
+      @trip.driver_id = Driver.all.where(is_available: true).sample.id
+      Driver.find_by(id: @trip.driver_id).update(is_available: false)
+      if @trip.save
+        redirect_to trip_path(@trip)
+      else
+        raise ArgumentError.new("Error: Trip not created.")
+      end
     else
-      raise ArgumentError.new("Error: Trip not created.")
+      flash[:notice] = "No driver is available at this moment."
+      redirect_to passenger_path(@trip.passenger_id)
     end
   end
 
