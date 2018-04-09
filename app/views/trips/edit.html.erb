@@ -14,7 +14,7 @@
   <br>
 
   <%= f.label :rating %>
-  <%= f.select :rating, (1..5).to_a, :value => @trip.rating %>
+  <%= f.select :rating, (1..5).to_a, :selected => @trip.rating.to_i %>
   <br>
 
   <%= f.label :cost %>
